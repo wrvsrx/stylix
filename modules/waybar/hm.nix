@@ -25,6 +25,12 @@ in
       example = "sansSerif";
       description = "The font for waybar to use";
     };
+    fontNames = lib.mkOption {
+      type = lib.types.listOf lib.types.str;
+      default = [ config.stylix.fonts.${cfg.font}.name ];
+      example = [ "Cascadia Code" ];
+      description = "The font list for waybar to use";
+    };
     addCss = lib.mkOption {
       type = lib.types.bool;
       default = true;
@@ -58,7 +64,7 @@ in
         @define-color base0C ${base0C}; @define-color base0D ${base0D}; @define-color base0E ${base0E}; @define-color base0F ${base0F};
 
         * {
-            font-family: "${config.stylix.fonts.${cfg.font}.name}";
+            font-family: ${builtins.concatStringsSep ", " (map (x: "\"" + x + "\"") cfg.fontNames)};
             font-size: ${builtins.toString config.stylix.fonts.sizes.desktop}pt;
         }
       ''
