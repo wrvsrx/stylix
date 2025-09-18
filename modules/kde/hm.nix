@@ -319,24 +319,13 @@ let
     text =
       mergeWithImage
         ''
-          get_exe() {
-            for directory in /run/current-system/sw/bin /usr/bin /bin; do
-              if [[ -f "$directory/$1" ]]; then
-                printf '%s\n' "$directory/$1"
-                return 0
-              fi
-            done
-            echo "Skipping '$1': command not found"
-            return 1
-          }
-
-          if look_and_feel="$(get_exe plasma-apply-lookandfeel)"; then
+          if look_and_feel="${lib.getExe' pkgs.kdePackages.plasma-workspace "plasma-apply-lookandfeel"}"; then
             "$look_and_feel" --apply "${Id}" ||
               echo "Failed plasma-apply-lookandfeel, ignoring error."
           fi
         ''
         ''
-          if wallpaper_image="$(get_exe plasma-apply-wallpaperimage)"; then
+          if wallpaper_image="${lib.getExe' pkgs.kdePackages.plasma-workspace "plasma-apply-wallpaperimage"}"; then
             "$wallpaper_image" "${themePackage}/share/wallpapers/${Id}" ||
               echo "Failed plasma-apply-wallpaperimage, ignoring error."
           fi
