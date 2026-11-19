@@ -6,7 +6,7 @@ mkTarget {
         default = {
           text_unselected = {
             base = base05;
-            background = base01;
+            background = base00;
             emphasis_0 = base09;
             emphasis_1 = base0C;
             emphasis_2 = base0B;
@@ -32,6 +32,14 @@ mkTarget {
             base = base05;
             background = base02;
             emphasis_0 = base08;
+            emphasis_1 = base05;
+            emphasis_2 = base0D;
+            emphasis_3 = base0F;
+          };
+          ribbon_hover = {
+            base = base05;
+            background = base03;
+            emphasis_0 = base0A;
             emphasis_1 = base05;
             emphasis_2 = base0D;
             emphasis_3 = base0F;
